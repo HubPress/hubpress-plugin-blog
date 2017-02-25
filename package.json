@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "bluebird": "^3.4.6",
-    "hubpress-core-plugins": "file:///Users/Anthonny/github/hubpress-projects/hubpress-core-plugins/hubpress-core-plugins-0.1.0.tgz",
+    "hubpress-core-plugins": "github:hubpress/hubpress-core-plugins#0.2.0",
     "lodash": "^4.17.2",
     "lodash": "^4.17.2",
     "moment": "^2.17.1",
