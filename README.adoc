@@ -1,0 +1,8 @@
+= HubPress: blog
+
+The blog manager
+
+== TODO
+
+. Complete this README
+. Add tests
