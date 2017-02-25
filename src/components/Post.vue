@@ -43,10 +43,22 @@
         <thead>
           <tr>
             <th class="heigth wide">Result</th>
-            <th class="heigth wide">Syntax</th>
+            <th class="heigth wide">Asciidoc</th>
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td>H1</td>
+            <td>= Title</td>
+          </tr>
+          <tr>
+            <td>H2</td>
+            <td>== Title</td>
+          </tr>
+          <tr>
+            <td>H3</td>
+            <td>=== Title</td>
+          </tr>
           <tr>
             <td><strong>Bold</strong></td>
             <td>*content*</td>
@@ -55,8 +67,39 @@
             <td><i>Emphasize</i></td>
             <td>_content_</td>
           </tr>
+          <tr>
+            <td><a href="#">Link</a></td>
+            <td>http://asciidoctor.org[Asciidoctor]</td>
+          </tr>
+          <tr>
+            <td>Image Block</td>
+            <td>image::sunset.jpg[]</td>
+          </tr>
+          <tr>
+            <td>Image Inline</td>
+            <td>Click image:icons/pause.png[title="Pause"] when you need a break.</td>
+          </tr>
+          <tr>
+            <td>Video</td>
+            <td>video::video_file.mp4[]</td>
+          </tr>
+          <tr>
+            <td>Unordered list</td>
+            <td>* item</td>
+          </tr>
+          <tr>
+            <td>Ordered list</td>
+            <td>. item</td>
+          </tr>
+          <tr>
+            <td><code>Inline code</code></td>
+            <td>`code`</td>
+          </tr>
         </tbody>
       </table>
+      <p>
+        More informations about the Asciidoc syntax here: <a href="http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/" target="_blank">AsciiDoc Syntax Quick Reference</a>
+      </p>
     </div>
   </div>
 
