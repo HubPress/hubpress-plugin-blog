@@ -78,6 +78,7 @@ export function hubpressPlugin(context) {
         [POSTS_SYNCHRONIZE](state, nextState) {
           console.log(POSTS_SYNCHRONIZE, nextState)
           _.merge(state, nextState)
+          state.posts = nextState.posts
         },
         [POST_CHANGE_CONTENT](state, nextState) {
           console.log('Content Changed', nextState)
