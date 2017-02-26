@@ -15,16 +15,16 @@ function initialize(opts) {
 
 function synchronize(opts) {
   return fires.fireRequestRemoteSynchronization(opts)
-    .then(payload => fires.fireReceiveRemoteSynchronization(opts))
-    .then(payload => fires.fireRequestRenderingDocuments(opts))
-    .then(payload => fires.fireReceiveRenderingDocuments(opts))
-    .then(payload => fires.fireRequestLocalSynchronization(opts))
-    .then(payload => fires.fireReceiveLocalSynchronization(opts))
-    .then(payload => fires.fireRequestLocalPosts(opts))
-    .then(payload => fires.fireReceiveLocalPosts(opts))
-    .then(payload => {
+    .then(updatedOpts => fires.fireReceiveRemoteSynchronization(updatedOpts))
+    .then(updatedOpts => fires.fireRequestRenderingDocuments(updatedOpts))
+    .then(updatedOpts => fires.fireReceiveRenderingDocuments(updatedOpts))
+    .then(updatedOpts => fires.fireRequestLocalSynchronization(updatedOpts))
+    .then(updatedOpts => fires.fireReceiveLocalSynchronization(updatedOpts))
+    .then(updatedOpts => fires.fireRequestLocalPosts(updatedOpts))
+    .then(updatedOpts => fires.fireReceiveLocalPosts(updatedOpts))
+    .then(updatedOpts => {
       localStorage.setItem('hubpress:sync', moment().format())
-      return payload
+      return updatedOpts
     })
 };
 

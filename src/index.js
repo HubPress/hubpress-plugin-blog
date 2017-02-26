@@ -115,7 +115,7 @@ export function hubpressPlugin(context) {
           }
           return dispatch('application:loading')
             .then(_ => logic.synchronize(opts))
-            .then(opts => commit(POSTS_SYNCHRONIZE, opts.nextState))
+            .then(updatedOpts => commit(POSTS_SYNCHRONIZE, updatedOpts.nextState))
             .then(_ => dispatch('application:loaded'))
             .then(_ => dispatch('application:notify', {
               icon: 'refresh',
