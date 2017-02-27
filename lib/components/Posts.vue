@@ -1,50 +1,47 @@
 <template>
-  <div class="posts-container">
+<div class="posts-container">
     <div class="ui fixed inverted menu">
         <div class="right menu">
-          <div class="ui right aligned category search item">
-            <div class="ui transparent icon input inverted">
-              <input type="text" placeholder="Filter by title or tag..." v-model="filterValue">
-              <i class="filter link icon"></i>
+            <div class="ui right aligned category search item">
+                <div class="ui transparent icon input inverted">
+                    <input type="text" placeholder="Filter by title or tag..." v-model="filterValue">
+                    <i class="filter link icon"></i>
+                </div>
+                <div class="results"></div>
             </div>
-            <div class="results"></div>
-          </div>
-          <a href="#" class="item" v-on:click.stop.prevent="synchronize()">
-            <div class="ui icon" data-tooltip="Synchronize content" data-position="bottom right">
-              <i class="refresh large icon"></i>
-            </div>
-          </a>
-          <a href="#" class="item" v-on:click.stop.prevent="newPost()">
-            <div class="ui icon" data-tooltip="Create a post" data-position="bottom right">
-              <i class="add large icon"></i>
-            </div>
-          </a>
+            <a href="#" class="item" v-on:click.stop.prevent="synchronize()">
+                <div class="ui icon" data-tooltip="Synchronize content" data-position="bottom right">
+                    <i class="refresh large icon"></i>
+                </div>
+            </a>
+            <a href="#" class="item" v-on:click.stop.prevent="newPost()">
+                <div class="ui icon" data-tooltip="Create a post" data-position="bottom right">
+                    <i class="add large icon"></i>
+                </div>
+            </a>
         </div>
     </div>
 
     <div class="ui basic modal">
-      <div class="ui icon header">
-        <i class="trash icon"></i>
-        Delete the post "{{ postToDelete.title }}"
-      </div>
-      <div class="content">
-        <p>Are you sure you want to delete this post?</p>
-      </div>
-      <div class="actions">
-        <div class="ui red basic cancel inverted button">
-          <i class="remove icon"></i>
-          No
+        <div class="ui icon header">
+            <i class="trash icon"></i> Delete the post "{{ postToDelete.title }}"
         </div>
-        <div class="ui green ok inverted button">
-          <i class="checkmark icon"></i>
-          Yes
+        <div class="content">
+            <p>Are you sure you want to delete this post?</p>
         </div>
-      </div>
+        <div class="actions">
+            <div class="ui red basic cancel inverted button">
+                <i class="remove icon"></i> No
+            </div>
+            <div class="ui green ok inverted button">
+                <i class="checkmark icon"></i> Yes
+            </div>
+        </div>
     </div>
 
     <div class="posts ui container centered">
 
-      <h2 class="ui center aligned icon header">
+        <h2 class="ui center aligned icon header">
         <i class="circular unordered list icon"></i>
         {{ posts.length }} post(s)
         <span v-if="filterValue.trim().length" class="">
@@ -52,40 +49,40 @@
         </span>
       </h2>
 
-      <div class="ui divider"></div>
+        <div class="ui divider"></div>
 
-      <div class="ui cards centered aligned">
-        <div class="ui card" v-bind:class="getPostStatusColor(post)"  v-for="post in posts">
-          <div class="content">
-            <div class="header">{{post.title}}</div>
-            <div class="meta">
-              <span class="right floated time">{{ publishedAt(post) }}</span>
-              <span class="status">{{ status(post) }}</span>
-            </div>
-          </div>
-          <div class="image cover">
-            <div :style="'background-image: url(\''+ postCoverUrl(post) +'\')'">
-            </div>
-          </div>
-          <div class="extra content">
-            <i class="right floated large edit link icon" v-on:click="navigateToPost(post)"></i>
-            <i class="right floated large trash link icon" v-on:click="displayConfirmMessage(post)"></i>
-            <div class="author">
-              <img class="ui avatar image" :src="getPostAuthor(post).avatar_url"> {{getPostAuthor(post).name || getPostAuthor(post).login}}
-            </div>
-          </div>
-          <div class="extra content">
-            <a class="ui tiny label" v-for="tag in post.tags">
-              <i class="tag icon"></i>
-              {{ tag }}
-            </a>
-            <div class="" v-if="!post.tags || !post.tags.length">
-              No tag
+        <div class="ui cards centered aligned">
+            <div class="ui card" v-bind:class="getPostStatusColor(post)" v-for="post in posts">
+                <div class="content">
+                    <div class="header">{{post.title}}</div>
+                    <div class="meta">
+                        <span class="right floated time">{{ publishedAt(post) }}</span>
+                        <span class="status">{{ status(post) }}</span>
+                    </div>
+                </div>
+                <div class="image cover">
+                    <div :style="'background-image: url(\''+ postCoverUrl(post) +'\')'">
+                    </div>
+                </div>
+                <div class="extra content">
+                    <i class="right floated large edit link icon" v-on:click="navigateToPost(post)"></i>
+                    <i class="right floated large trash link icon" v-on:click="displayConfirmMessage(post)"></i>
+                    <div class="author">
+                        <img class="ui avatar image" :src="getPostAuthor(post).avatar_url"> {{getPostAuthor(post).name || getPostAuthor(post).login}}
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a class="ui tiny label" v-for="tag in post.tags">
+                        <i class="tag icon"></i> {{ tag }}
+                    </a>
+                    <div class="" v-if="!post.tags || !post.tags.length">
+                        No tag
+                    </div>
+
+                </div>
             </div>
 
-          </div>
         </div>
-
     </div>
 </div>
 </template>
@@ -132,7 +129,9 @@ export default {
       return !!post.published && moment(post.published_at).fromNow() || '';
     },
     postCoverUrl: function(post) {
-      return post.image || 'http://hubpress.io/img/logo.png'
+      let image = post.image || 'http://hubpress.io/img/logo.png'
+      image = image.startsWith('http') ? image : `${post.attributes.$$smap.imagesdir}/${post.image}`
+      return image
     },
     getPostStatusColor: function(post) {
       if (!post.original) {

@@ -87,6 +87,7 @@ export function hubpressPlugin(context) {
         [POST_DELETE](state, nextState) {
           console.log('Post deleted', nextState)
           _.merge(state, nextState)
+          state.posts = nextState.posts
         }
       },
       actions: {

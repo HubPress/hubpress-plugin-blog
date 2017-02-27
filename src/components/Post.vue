@@ -25,7 +25,7 @@
       <a href="#" class="item" v-if="isRemoteActionVisible" v-on:click.stop.prevent="publish()">
         <div class="ui icon" v-bind:data-tooltip="publishLabel" data-position="bottom right">
           <i class="icons">
-                <i class="rocket large icon" v-bind:class="{'unpublish': post.published}"></i>
+            <i class="cloud large icon" v-bind:class="{'download': post.published, 'upload': !post.published}"></i>
           </i>
         </div>
       </a>
@@ -451,6 +451,10 @@ export default {
   padding: 10px;
   border-radius: 5px;
   overflow: auto;
+}
+
+#asciidoc-preview .paragraph {
+  padding: 0.75em 0;
 }
 
 @media screen and (max-width: 992px) {
