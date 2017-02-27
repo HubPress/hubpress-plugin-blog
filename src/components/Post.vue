@@ -25,8 +25,7 @@
       <a href="#" class="item" v-if="isRemoteActionVisible" v-on:click.stop.prevent="publish()">
         <div class="ui icon" v-bind:data-tooltip="publishLabel" data-position="bottom right">
           <i class="icons">
-                <i class="rocket large icon"></i>
-          <i class="big red dont icon" v-if="post.published"></i>
+                <i class="rocket large icon" v-bind:class="{'unpublish': post.published}"></i>
           </i>
         </div>
       </a>
@@ -467,6 +466,10 @@ export default {
   #asciidoc-preview.is-preview-visible {
     display:block;
   }
+}
+
+.item .ui.icon .rocket.unpublish {
+  transform: rotate(90deg);
 }
 
 /**
