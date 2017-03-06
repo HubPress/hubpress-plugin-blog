@@ -428,6 +428,12 @@ export default {
   margin-bottom: 0;
 }
 
+#asciidoc-content,
+#asciidoc-preview {
+  height: calc(100vh - 47px);
+  min-height: calc(100vh - 47px);
+}
+
 #asciidoc-preview {
   overflow-y: auto;
   padding-top: 2em;
@@ -455,6 +461,11 @@ export default {
 
 #asciidoc-preview .paragraph {
   padding: 0.75em 0;
+}
+
+#asciidoc-preview img {
+  width: 100%;
+  max-width: 100%;
 }
 
 @media screen and (max-width: 992px) {
