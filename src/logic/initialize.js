@@ -7,7 +7,7 @@ function initialize(opts) {
     .then(updatedOpts => {
       if (localStorage.getItem('hubpress:sync'))
         return fires.fireRequestLocalPosts(updatedOpts)
-          .then(payload => fires.fireReceiveLocalPosts(updatedOpts))
+          .then(_updatedOpts => fires.fireReceiveLocalPosts(_updatedOpts))
 
       return synchronize(updatedOpts)
     })
